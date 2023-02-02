@@ -4,29 +4,36 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    Rigidbody2D rigidbody2d;
-    float horizontal;
-    float vertical;
+  public float speed = 0.4f;
+  Vector2 dest = Vector2.zero;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigidbody2d = GetComponent<Rigidbody2D>();
+  void start(){
+    dest = transform.position;
+
+  }
+
+  void FixedUpdate(){
+    // Move closer to Destination
+    Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
+    GetComponent<Rigidbody2D>().MovePosition(p);
+
+    // Check for Input if not moving
+    if ((Vector2)transform.position == dest){
+        if(Input.GetKey(KeyCode.W) && valid(Vector2.up))
+            dest = (Vector2)transform.position + Vector2.up;
+        if(Input.GetKey(KeyCode.D) && valid(Vector2.right))
+            dest = (Vector2)transform.position + Vector2.right;
+        if(Input.GetKey(KeyCode.S) && valid(Vector2.down))
+            dest = (Vector2)transform.position - Vector2.up;
+        if(Input.GetKey(KeyCode.A) && valid(Vector2.left))
+            dest = (Vector2)transform.position - Vector2.right;
     }
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-    }
-
-    void FixedUpdate()
-    {
-        Vector2 position = rigidbody2d.position;
-        position.x = position.x + 5.0f * horizontal * Time.deltaTime;
-        position.y = position.y + 5.0f * vertical * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
-    }
+  bool valid(Vector2 dir){
+    // Cast line from 'next to Pac-Man' to 'Pac-Man'
+    Vector2 pos = transform.position;
+    RayCastHit2D hit = Physics2D.Linecast(pos + dir, pos);
+    return (hit.collider == GetComponent<Collider2D>());
+  }
 }
