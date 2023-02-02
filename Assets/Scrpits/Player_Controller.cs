@@ -33,7 +33,7 @@ public class Player_Controller : MonoBehaviour
   bool valid(Vector2 dir){
     // Cast line from 'next to Pac-Man' to 'Pac-Man'
     Vector2 pos = transform.position;
-    RayCastHit2D hit = Physics2D.Linecast(pos + dir, pos);
+    RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
     return (hit.collider == GetComponent<Collider2D>());
   }
 }
