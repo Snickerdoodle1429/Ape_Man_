@@ -1,39 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_Controller : MonoBehaviour
 {
-  public float speed = 0.4f;
-  Vector2 dest = Vector2.zero;
+    [SerializeField] private int speed = 5;
 
-  void start(){
-    dest = transform.position;
+    private Vector2 movement;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-  }
-
-  void FixedUpdate(){
-    // Move closer to Destination
-    Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
-    GetComponent<Rigidbody2D>().MovePosition(p);
-
-    // Check for Input if not moving
-    if ((Vector2)transform.position == dest){
-        if(Input.GetKey(KeyCode.W) && valid(Vector2.up))
-            dest = (Vector2)transform.position + Vector2.up;
-        if(Input.GetKey(KeyCode.D) && valid(Vector2.right))
-            dest = (Vector2)transform.position + Vector2.right;
-        if(Input.GetKey(KeyCode.S) && valid(Vector2.down))
-            dest = (Vector2)transform.position - Vector2.up;
-        if(Input.GetKey(KeyCode.A) && valid(Vector2.left))
-            dest = (Vector2)transform.position - Vector2.right;
+    private void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
-  }
 
-  bool valid(Vector2 dir){
-    // Cast line from 'next to Pac-Man' to 'Pac-Man'
-    Vector2 pos = transform.position;
-    RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-    return (hit.collider == GetComponent<Collider2D>());
-  }
+    private void OnMovement(InputValue value) { 
+        movement = value.Get<Vector2>();
+
+        if (movement.x != 0 || movement.y != 0)
+        {
+            animator.SetFloat("X", movement.x);
+            animator.SetFloat("Y", movement.y);
+
+            animator.SetBool("IsWalking", true);
+        } else {
+            animator.SetBool("IsWalking", false);
+        }
+    }
+
+    private void FixedUpdate() {
+        // Varient 1
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
+        // Varient 2
+        // if(movement.x != 0  || movment.y !=0){
+        // rb.velocity = movement * speed;
+        // }
+
+        //Varient 3
+        //rb.addForce(movement * speed)
+    }
 }
