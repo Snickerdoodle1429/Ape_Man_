@@ -11,6 +11,7 @@ public class Player_Controller : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
+    
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
