@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Goblet_Script : MonoBehaviour
 {
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,6 @@ public class Goblet_Script : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Destory(gameObject);
+        Destroy(gameObject);
     }
 }
