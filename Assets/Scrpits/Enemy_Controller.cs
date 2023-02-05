@@ -28,7 +28,7 @@ public class Enemy_Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D co)
     {
-        if (co.name == "Adventurer")
+        if (co.name == "Ape")
         Destroy(co.gameObject);
     }
 }
