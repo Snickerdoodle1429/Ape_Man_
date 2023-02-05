@@ -4844,6 +4844,7 @@ GameObject:
   - component: {fileID: 643951428}
   - component: {fileID: 643951427}
   - component: {fileID: 643951426}
+  - component: {fileID: 643951431}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -4861,7 +4862,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.08058405, y: -0.06113285}
@@ -4977,6 +4978,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643951431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643951425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4292fb070c9475b43a5687d0d3beed48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &647853028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6306,7 +6319,7 @@ GameObject:
   - component: {fileID: 920085029}
   m_Layer: 0
   m_Name: Ape
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9281,7 +9294,7 @@ GameObject:
   - component: {fileID: 1521425262}
   - component: {fileID: 1521425261}
   - component: {fileID: 1521425260}
-  - component: {fileID: 1521425259}
+  - component: {fileID: 1521425263}
   m_Layer: 0
   m_Name: MonkeyGFX
   m_TagString: Untagged
@@ -9304,20 +9317,6 @@ Transform:
   m_Father: {fileID: 643951430}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1521425259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521425257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620be675896450a42822ef161ff0ad26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  speed: 0.3
 --- !u!114 &1521425260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9403,6 +9402,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1521425263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521425257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4292fb070c9475b43a5687d0d3beed48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1528870508
 PrefabInstance:
   m_ObjectHideFlags: 0
