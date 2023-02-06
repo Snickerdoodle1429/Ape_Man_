@@ -90,4 +90,6 @@ public class Player_Controller : MonoBehaviour
     //Varient 3
     //rb.addForce(movement * speed)
     //}
+
+ 
 }
